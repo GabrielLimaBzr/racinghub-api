@@ -49,4 +49,6 @@ public abstract class BaseServiceImpl<T extends BaseModel<T>> implements BaseSer
 		findById(id);
 		repository.deleteById(id);
 	}
+	
+	
 }
