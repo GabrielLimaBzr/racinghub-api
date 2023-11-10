@@ -33,12 +33,61 @@ O projeto segue uma estrutura baseada no padrão de projeto DDD, dividido em mó
 - **Config:** Configurações específicas do Spring.
 - **Security:** Configurações relacionadas à segurança.
 
-## Como Executar
+## Funcionalidades Principais:
 
-Para executar a aplicação localmente, siga os passos abaixo:
+1. **Cadastro de Eventos:**
+   - Permitir que os organizadores cadastrem novos eventos.
+   - Incluir informações como nome, data, localização, descrição, etc.
 
-1. Clone o repositório: `git clone https://seurepositorio.com/api-gerenciamento-eventos-corrida.git`
-2. Navegue até o diretório do projeto: `cd api-gerenciamento-eventos-corrida`
-3. Execute o aplicativo Spring Boot: `mvn spring-boot:run`
+2. **Gestão de Regulamentos:**
+   - Possibilitar o upload e associação de regulamentos em formato PDF a cada evento.
 
-A aplicação estará disponível em `http://localhost:5050`.
+3. **Inscrições de Participantes:**
+   - Permitir que os participantes se inscrevam nos eventos.
+   - Coletar informações como nome, idade, categoria, etc.
+
+4. **Visualização de Eventos:**
+   - Página para visualizar detalhes de eventos, incluindo regulamento e informações de inscrição.
+
+5. **Controle de Participantes Inscritos:**
+   - Painel para os organizadores visualizarem e gerenciarem participantes inscritos.
+
+6. **Geração de Relatórios:**
+   - Gerar relatórios sobre inscrições, participantes, e outros dados relevantes.
+
+7. **Autenticação e Autorização:**
+   - Implementar autenticação para organizadores e participantes.
+   - Controlar permissões de acesso.
+
+8. **Integração com Plataformas de Pagamento:**
+   - Opção para pagamento de taxas de inscrição.
+
+9. **Comunicação com Participantes:**
+   - Enviar informações e atualizações aos participantes por e-mail ou notificações.
+
+10. **Integração com Redes Sociais:**
+    - Compartilhamento fácil de eventos em redes sociais.
+
+## Funcionalidades Adicionais (Opcionais):
+
+1. **Avaliações e Comentários:**
+   - Permitir que os participantes avaliem eventos e deixem comentários.
+
+2. **Histórico de Eventos:**
+   - Manter um histórico de eventos passados.
+
+3. **Notificações em Tempo Real:**
+   - Implementar notificações em tempo real para atualizações importantes.
+
+4. **Configurações Personalizadas de Evento:**
+   - Opções para os organizadores personalizarem configurações específicas para cada evento.
+
+5. **Feedback Pós-Evento:**
+   - Coletar feedback dos participantes após a conclusão do evento.
+
+6. **Gerenciamento de Patrocinadores:**
+   - Permitir a associação de patrocinadores a eventos.
+
+7. **Exportação de Dados:**
+   - Opção para exportar dados para formatos comuns.
+
