@@ -20,9 +20,6 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
-    
-app:
-  cors-origin: "*"
 
 hibernate:
   ejb:
