@@ -13,32 +13,30 @@ import com.application.corridahub.comum.domain.BaseService;
 import com.application.corridahub.comum.domain.model.BaseModel;
 
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
-public class BaseController<T extends BaseModel<T>> {
+public abstract class BaseController<T extends BaseModel<T>> {
 
-	private final BaseService<T> service;
+	public abstract BaseService<T> getService();
 
 	@GetMapping
 	public ResponseEntity<List<T>> findAll() {
-		return ResponseEntity.ok(service.findAll());
+		return ResponseEntity.ok(getService().findAll());
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<T> findById(Long id) {
-		return ResponseEntity.ok(service.findById(id));
+		return ResponseEntity.ok(getService().findById(id));
 	}
 
 	@PostMapping
 	public ResponseEntity<T> create(@Valid @RequestBody T entity) {
-		T createEntity = service.create(entity);
+		T createEntity = getService().create(entity);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createEntity);
 	}
 
 	@PutMapping
 	public ResponseEntity<T> update(@Valid @RequestBody T entity) {
-		return ResponseEntity.ok(service.update(entity));
+		return ResponseEntity.ok(getService().update(entity));
 	}
 
 }

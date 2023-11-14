@@ -23,3 +23,8 @@ spring:
     
 app:
   cors-origin: "*"
+
+hibernate:
+  ejb:
+    interceptor:
+      allow_cdi_injection: true
