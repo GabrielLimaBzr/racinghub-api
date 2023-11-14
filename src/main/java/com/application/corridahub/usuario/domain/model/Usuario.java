@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.application.corridahub.comum.domain.model.BaseModel;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,8 +22,10 @@ public class Usuario implements BaseModel<Usuario> {
 	private Long id;
 	
 	@Email(message = "Email inválido")
+	@Column(nullable = false, unique = true)
 	private String email;
 	
+	@Column(nullable = false)
 	private String senhaHash;
 
     private Boolean ativo;
