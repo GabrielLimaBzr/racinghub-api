@@ -4,39 +4,100 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.application.corridahub.comum.domain.BaseService;
-import com.application.corridahub.comum.domain.model.BaseModel;
 
 import jakarta.validation.Valid;
 
-public abstract class BaseController<T extends BaseModel<T>> {
+/**
+ * Abstract class for controllers CRUD.
+ *
+ * @author Gabriel Lima (2023)
+ *
+ * @param <T> entity type
+ */
+public abstract class BaseController<T> {
 
-	public abstract BaseService<T> getService();
+	private final BaseService<T> baseService;
+	
+	/**
+     * Receives the BaseService instance reponsable by resource CRUD operations
+     *
+     * @param baseService
+     */
+	protected BaseController(final BaseService<T> baseService) {
+		this.baseService = baseService;
+	}
 
+	/**
+     * list all records of the entity
+     *
+     * @return all records of the entity or an empty list
+     */
 	@GetMapping
 	public ResponseEntity<List<T>> findAll() {
-		return ResponseEntity.ok(getService().findAll());
+		checkService();
+		return ResponseEntity.ok(baseService.findAll());
 	}
 
+	/**
+     * return the entity through id
+     *
+     * @return the entity found or 404 error if not found
+     */
 	@GetMapping("/{id}")
 	public ResponseEntity<T> findById(Long id) {
-		return ResponseEntity.ok(getService().findById(id));
+		checkService();
+		return ResponseEntity.ok(baseService.findById(id));
 	}
 
+	/**
+     * Create the entity.
+     *
+     * @param entity
+     * @return the created entity
+     */
 	@PostMapping
 	public ResponseEntity<T> create(@Valid @RequestBody T entity) {
-		T createEntity = getService().create(entity);
+		checkService();
+		T createEntity = baseService.create(entity);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createEntity);
 	}
 
+	/**
+     * Update the entity.
+     *
+     * @param entity
+     * @return the updated entity
+     */
 	@PutMapping
 	public ResponseEntity<T> update(@Valid @RequestBody T entity) {
-		return ResponseEntity.ok(getService().update(entity));
+		checkService();
+		return ResponseEntity.ok(baseService.update(entity));
 	}
+
+	/**
+     * Delete the entity.
+     *
+     * @param id
+     */
+	@DeleteMapping("{id}")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void deleteById(Long id) {
+		checkService();
+		baseService.deleteById(id);
+    }
+	
+	private void checkService() {
+        if (baseService == null) {
+            throw new IllegalStateException("baseService não foi definido no construtor.");
+        }
+    }
 
 }

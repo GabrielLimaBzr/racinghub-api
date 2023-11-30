@@ -10,7 +10,7 @@ import com.application.corridahub.comum.domain.exception.ResourceNotFoundExcepti
 import com.application.corridahub.comum.domain.model.BaseModel;
 
 @Service
-public abstract class BaseServiceImpl<T extends BaseModel<T>> implements BaseService<T> {
+public abstract class BaseServiceImpl<T extends BaseModel> implements BaseService<T> {
 
 	protected abstract JpaRepository<T, Long> getRepository();
 
@@ -34,16 +34,14 @@ public abstract class BaseServiceImpl<T extends BaseModel<T>> implements BaseSer
 	@Override
 	@Transactional
 	public T create(T entity) {
-		T dbDomain = entity.createNewInstance();
-		return getRepository().save(dbDomain);
+		return getRepository().save(entity);
 	}
 
 	@Override
 	@Transactional
 	public T update(T entity) {
-		T dbDomain = findById(entity.getId());
-		dbDomain.update(entity);
-		return getRepository().save(dbDomain);
+		findById(entity.getId());
+		return getRepository().save(entity);
 	}
 
 	@Override
