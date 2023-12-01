@@ -1,4 +1,4 @@
-package com.application.corridahub.usuario.domain.model;
+package com.application.corridahub.user.domain.model;
 
 public enum Role {
 	

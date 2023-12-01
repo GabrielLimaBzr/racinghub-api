@@ -1,4 +1,4 @@
-package com.application.corridahub.usuario.domain.model;
+package com.application.corridahub.user.domain.model;
 
 import java.time.LocalDateTime;
 
@@ -6,6 +6,8 @@ import com.application.corridahub.comum.domain.model.BaseModel;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,7 +18,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false) 
-public class Usuario extends BaseModel {
+public class User extends BaseModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +29,12 @@ public class Usuario extends BaseModel {
 	private String email;
 	
 	@Column(nullable = false)
-	private String senhaHash;
+	private String passHash;
 
-    private Boolean ativo;
+    private Boolean active;
     
     private LocalDateTime created;
-
+    
+    @Enumerated(EnumType.ORDINAL)
+    private Role role;	
 }
