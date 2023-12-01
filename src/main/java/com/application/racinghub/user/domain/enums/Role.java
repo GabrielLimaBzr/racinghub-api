@@ -1,4 +1,4 @@
-package com.application.racinghub.user.domain.model;
+package com.application.racinghub.user.domain.enums;
 
 public enum Role {
 	
