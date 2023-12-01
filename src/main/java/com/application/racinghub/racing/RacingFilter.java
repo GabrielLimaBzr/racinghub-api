@@ -10,5 +10,7 @@ import lombok.Setter;
 public class RacingFilter extends BaseFilter {
 	
 	private String racing;
+	private String dateStart;
+	private String dateEnd;
 
 }

@@ -21,6 +21,9 @@ public class RacingServiceImpl extends BaseServiceImpl<Racing, RacingFilter, Rac
 	public RacingSpecification createSpecification(RacingFilter filter) {
 		RacingSpecification specification = new RacingSpecification();
 		specification.add(new SearchCriteria("racing", SearchOperantion.MATCH, filter.getRacing()));
+		specification.add(new SearchCriteria("dateStart", SearchOperantion.DATE_GREATER_THAN_EQUAL, filter.getDateStart()));
+		specification.add(new SearchCriteria("dateEnd", SearchOperantion.DATE_LESS_THAN_EQUAL, filter.getDateEnd()));
+		
 		return specification;
 	}
 
