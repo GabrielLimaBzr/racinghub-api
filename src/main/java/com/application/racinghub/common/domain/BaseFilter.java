@@ -8,5 +8,5 @@ import lombok.Setter;
 public abstract class BaseFilter {
 	private int page = 0;
 	private int size = 10;
-	private String orderBy = "id, DESC";
+	private String orderBy;
 }

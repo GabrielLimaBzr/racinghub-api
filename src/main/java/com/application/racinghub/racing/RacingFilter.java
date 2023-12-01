@@ -1,5 +1,7 @@
 package com.application.racinghub.racing;
 
+import java.time.LocalDateTime;
+
 import com.application.racinghub.common.domain.BaseFilter;
 
 import lombok.Getter;
@@ -10,7 +12,7 @@ import lombok.Setter;
 public class RacingFilter extends BaseFilter {
 	
 	private String racing;
-	private String dateStart;
-	private String dateEnd;
+	private LocalDateTime dateStart;
+	private LocalDateTime dateEnd;
 
 }
