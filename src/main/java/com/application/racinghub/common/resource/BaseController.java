@@ -2,10 +2,13 @@ package com.application.racinghub.common.resource;
 
 import java.util.List;
 
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,17 +24,19 @@ import jakarta.validation.Valid;
  * @author Gabriel Lima (2023)
  *
  * @param <T> entity type
+ * @param <FP> filter params
+ * @param <S> specification
  */
-public abstract class BaseController<T> {
+public abstract class BaseController<T, FP, S> {
 
-	private final BaseService<T> baseService;
+	private final BaseService<T, FP, S> baseService;
 	
 	/**
      * Receives the BaseService instance reponsable by resource CRUD operations
      *
      * @param baseService
      */
-	protected BaseController(final BaseService<T> baseService) {
+	protected BaseController(final BaseService<T, FP, S> baseService) {
 		this.baseService = baseService;
 	}
 
@@ -40,7 +45,7 @@ public abstract class BaseController<T> {
      *
      * @return all records of the entity or an empty list
      */
-	@GetMapping
+	@GetMapping("/all")
 	public ResponseEntity<List<T>> findAll() {
 		checkService();
 		return ResponseEntity.ok(baseService.findAll());
@@ -93,6 +98,17 @@ public abstract class BaseController<T> {
 		checkService();
 		baseService.deleteById(id);
     }
+	
+	/**
+     * search with filter.
+     *
+     * @param filter
+     * @return the result filtered
+     */
+	@GetMapping
+	public Page<T> filter(@ParameterObject @ModelAttribute FP filter){
+		return baseService.filter(filter);
+	}
 	
 	private void checkService() {
         if (baseService == null) {

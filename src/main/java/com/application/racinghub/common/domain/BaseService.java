@@ -2,7 +2,9 @@ package com.application.racinghub.common.domain;
 
 import java.util.List;
 
-public interface BaseService<T> {
+import org.springframework.data.domain.Page;
+
+public interface BaseService<T, FP, S> {
 
 	List<T> findAll();
 
@@ -13,5 +15,9 @@ public interface BaseService<T> {
 	T update(T entity);
 
 	void deleteById(Long id);
-	
+
+	Page<T> filter(FP filter);
+
+	S createSpecification(FP filter);
+
 }
