@@ -1,8 +1,5 @@
-<<<<<<<< HEAD:src/main/java/com/application/corridahub/user/domain/model/User.java
-package com.application.corridahub.user.domain.model;
-========
+
 package com.application.racinghub.user.domain.model;
->>>>>>>> 0770783712ca578dd536507926601a963d4ef835:src/main/java/com/application/racinghub/user/domain/model/User.java
 
 import java.time.LocalDateTime;
 
@@ -37,10 +34,7 @@ public class User extends BaseModel {
 	private String email;
 	
 	@Column(nullable = false)
-<<<<<<<< HEAD:src/main/java/com/application/corridahub/user/domain/model/User.java
-========
 	@NotNull(message = "Senha inválida")
->>>>>>>> 0770783712ca578dd536507926601a963d4ef835:src/main/java/com/application/racinghub/user/domain/model/User.java
 	private String passHash;
 
     private Boolean active;
