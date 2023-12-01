@@ -1,7 +1,7 @@
 server:
   port: 5050
   servlet:
-    context-path: /corridahub-api
+    context-path: /racinghub-api
 
 spring:
   datasource:
