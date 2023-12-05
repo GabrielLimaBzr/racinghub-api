@@ -13,8 +13,11 @@ import com.application.racinghub.user.infra.UserRepository;
 @Service
 public class UserServiceImpl extends BaseServiceImpl<User, UserFilter, UserSpecification> implements UserService {
 
+	private final UserRepository repository;
+
 	public UserServiceImpl(UserRepository repository) {
 		super(User.class, repository);
+		this.repository = repository;
 	}
 
 	@Override
@@ -22,5 +25,13 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserFilter, UserSpeci
 		UserSpecification specification = new UserSpecification();
 		specification.add(new SearchCriteria("email", SearchOperantion.EQUAL, filter.getEmail()));
 		return specification;
+	}
+
+	public User findUserByDocument(String document) {
+		return this.repository.findUserByDocument(document);
+	}
+
+	public User findUserByEmail(String email) {
+		return this.repository.findUserByEmail(email);
 	}
 }
