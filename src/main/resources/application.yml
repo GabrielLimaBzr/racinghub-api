@@ -25,3 +25,9 @@ hibernate:
   ejb:
     interceptor:
       allow_cdi_injection: true
+
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:my-secret-key}
+      hours_to_expire: 1
