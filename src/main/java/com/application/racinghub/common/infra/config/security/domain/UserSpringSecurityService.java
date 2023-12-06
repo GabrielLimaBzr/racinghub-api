@@ -25,4 +25,9 @@ public class UserSpringSecurityService {
         }
         return null;
     }
+
+    public String findUserEmail(String login) {
+        if (Utils.isValidEmail(login)) return login;
+        return userService.findUserByDocument(login).getPerson().getEmail();
+    }
 }

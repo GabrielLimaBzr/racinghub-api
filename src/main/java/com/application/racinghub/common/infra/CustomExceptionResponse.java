@@ -23,4 +23,12 @@ public class CustomExceptionResponse {
         this.status = status;
     }
 
+	public String toJSON() {
+		return  "{"
+				+"\"timestamp\":\"" + this.timestamp + "\","
+				+"\"status\":\"" + this.status + "\","
+				+"\"message\":\"" + this.message + "\""
+				+"}";
+	}
+
 }

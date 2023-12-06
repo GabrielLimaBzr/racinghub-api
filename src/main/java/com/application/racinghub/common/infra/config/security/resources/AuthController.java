@@ -1,6 +1,6 @@
-package com.application.racinghub.common.infra.config.security.infra;
+package com.application.racinghub.common.infra.config.security.resources;
 
-import com.application.racinghub.common.infra.config.security.AuthService;
+import com.application.racinghub.common.infra.config.security.domain.AuthService;
 import com.application.racinghub.common.infra.config.security.domain.model.dto.RequestLoginDTO;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -19,6 +19,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody @Valid RequestLoginDTO loginDTO) {
-        return ResponseEntity.ok(this.authService.Login(loginDTO));
+        return ResponseEntity.ok().header("Token", authService.Login(loginDTO)).build();
     }
 }
