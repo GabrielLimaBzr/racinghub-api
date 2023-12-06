@@ -34,7 +34,7 @@ public class ValidateDocument {
     }
 
 
-    private String removeSpecialCharacters(String document) {
+    public String removeSpecialCharacters(String document) {
         return document.replaceAll("\\.", "")
                 .replaceAll("/", "")
                 .replaceAll("-", "");

@@ -54,4 +54,8 @@ public class Utils {
     public static String formatDocument(String document) {
         return validateDocument.formatDocument(document);
     }
+
+    public static String removeSpecialCharacters(String document) {
+        return validateDocument.removeSpecialCharacters(document);
+    }
 }
