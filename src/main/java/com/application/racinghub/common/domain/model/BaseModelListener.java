@@ -3,7 +3,6 @@ package com.application.racinghub.common.domain.model;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.PrePersist;
-
 public class BaseModelListener {
 
 	@PrePersist

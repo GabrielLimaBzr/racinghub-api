@@ -7,21 +7,19 @@ import com.application.racinghub.common.domain.model.BaseModel;
 import com.application.racinghub.person.domain.enums.Gender;
 import com.application.racinghub.person.domain.enums.PersonType;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false) 
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@EntityListeners(AuditingEntityListener.class)
 public class Person extends BaseModel {
 
 	@Id
@@ -32,6 +30,7 @@ public class Person extends BaseModel {
 	private String name;
 
 	@NotNull(message = "Data de nascimento inválida")
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime birthDate;
     
 	@NotNull(message = "Tipo de pessoa inválido")
@@ -40,11 +39,13 @@ public class Person extends BaseModel {
     
 	@NotNull(message = "Telefone inválido")
     private String phone;
-    
+
+    @NotNull(message = "Documento não pode ser nulo")
     private String document;
     
     @NotNull(message = "E-mail inválido")
     @Email
+    @Column(nullable = false, unique = true)
     private String email;
     
     @NotNull(message = "Gênero inválido")
@@ -54,6 +55,7 @@ public class Person extends BaseModel {
     @NotNull(message = "Endereço inválido")
     @OneToOne
     private Address address;
-	
+
+    @CreatedDate
 	private LocalDateTime created;
 }

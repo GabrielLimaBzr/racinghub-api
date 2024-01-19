@@ -41,17 +41,6 @@ public abstract class BaseController<T, FP, S> {
 	}
 
 	/**
-     * list all records of the entity
-     *
-     * @return all records of the entity or an empty list
-     */
-	@GetMapping("/all")
-	public ResponseEntity<List<T>> findAll() {
-		checkService();
-		return ResponseEntity.ok(baseService.findAll());
-	}
-
-	/**
      * return the entity through id
      *
      * @return the entity found or 404 error if not found

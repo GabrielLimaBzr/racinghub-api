@@ -6,8 +6,6 @@ import org.springframework.data.domain.Page;
 
 public interface BaseService<T, FP, S> {
 
-	List<T> findAll();
-
 	T findById(Long id);
 
 	T create(T entity);

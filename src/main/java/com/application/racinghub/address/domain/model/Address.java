@@ -1,21 +1,20 @@
 package com.application.racinghub.address.domain.model;
 
-import java.time.LocalDateTime;
-
 import com.application.racinghub.common.domain.model.BaseModel;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false) 
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@EntityListeners(AuditingEntityListener.class)
 public class Address extends BaseModel{
 
 	@Id
@@ -39,8 +38,9 @@ public class Address extends BaseModel{
     
     private String neighborhood;
     
-    @Size(max = 500, message = "Valor máximo oberservação 500 caracteres")
+    @Size(max = 500, message = "Valor máximo oberservação: 500 caracteres")
     private String note;
-	
-	private LocalDateTime created;
+
+    @CreatedDate
+    private LocalDateTime created;
 }

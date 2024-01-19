@@ -6,7 +6,6 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
-@EntityListeners(BaseModelListener.class)
 public abstract class BaseModel {
 	
 	public abstract Long getId();

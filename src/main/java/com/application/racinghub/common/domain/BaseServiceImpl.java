@@ -39,11 +39,6 @@ public abstract class BaseServiceImpl<T extends BaseModel, FP extends BaseFilter
 	}
 
 	@Override
-	public List<T> findAll() {
-		return getRepository().findAll();
-	}
-
-	@Override
 	public T findById(Long id) {
 		return getRepository().findById(id).orElseThrow(() -> new ResourceNotFoundException(
 				String.format("Recurso não encontrado para a entidade %s id: %s", entityClass.getSimpleName(), id)));

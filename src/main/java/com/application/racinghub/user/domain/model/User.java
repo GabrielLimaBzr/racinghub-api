@@ -38,7 +38,7 @@ public class User extends BaseModel {
 	@NotNull(message = "Senha inválida")
 	private String passHash;
 
-    private Boolean active;
+    private Boolean active = false;
     
     private LocalDateTime created;
     
