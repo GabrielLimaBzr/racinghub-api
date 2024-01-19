@@ -7,41 +7,43 @@ import com.application.racinghub.common.domain.model.BaseModel;
 import com.application.racinghub.person.domain.model.Person;
 import com.application.racinghub.user.domain.enums.Role;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Data
 @Table(name = "users")
-@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false) 
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@EntityListeners(AuditingEntityListener.class)
 public class User extends BaseModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne
-	@NotNull(message = "Pessoa inválida")
-	private Person person;
-	
 	@Column(nullable = false)
 	@NotNull(message = "Senha inválida")
 	private String passHash;
 
+	@NotNull(message = "E-mail inválido")
+	@Email
+	@Column(nullable = false, unique = true)
+	private String email;
+
     private Boolean active = false;
-    
+
+	@CreatedDate
     private LocalDateTime created;
     
     @Enumerated(EnumType.ORDINAL)
-    private Role role;	
+    private Role role;
+
+	@OneToOne
+	@NotNull(message = "Pessoa inválida")
+	private Person person;
 }

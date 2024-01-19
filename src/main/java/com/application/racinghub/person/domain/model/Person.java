@@ -43,11 +43,6 @@ public class Person extends BaseModel {
     @NotNull(message = "Documento não pode ser nulo")
     private String document;
     
-    @NotNull(message = "E-mail inválido")
-    @Email
-    @Column(nullable = false, unique = true)
-    private String email;
-    
     @NotNull(message = "Gênero inválido")
     @Enumerated(EnumType.ORDINAL)
     private Gender gender;

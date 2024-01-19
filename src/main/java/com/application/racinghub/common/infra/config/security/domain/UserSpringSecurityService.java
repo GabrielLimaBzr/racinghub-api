@@ -17,7 +17,7 @@ public class UserSpringSecurityService {
     public UserDetails findUser(String userLogin) {
         if (Utils.isValidEmail(userLogin)) {
             User user = userService.findUserByEmail(userLogin);
-            if (user != null) return new UserSpringSecurity(user.getPerson().getEmail(), user.getPassHash(), user.getRole());
+            if (user != null) return new UserSpringSecurity(user.getEmail(), user.getPassHash(), user.getRole());
         }
         if (Utils.isValidDocument(userLogin)) {
             User user = userService.findUserByDocument(userLogin);
@@ -28,6 +28,6 @@ public class UserSpringSecurityService {
 
     public String findUserEmail(String login) {
         if (Utils.isValidEmail(login)) return login;
-        return userService.findUserByDocument(login).getPerson().getEmail();
+        return userService.findUserByDocument(login).getEmail();
     }
 }
