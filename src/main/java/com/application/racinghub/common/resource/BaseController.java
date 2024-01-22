@@ -6,13 +6,7 @@ import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import com.application.racinghub.common.domain.BaseService;
 
@@ -46,7 +40,7 @@ public abstract class BaseController<T, FP, S> {
      * @return the entity found or 404 error if not found
      */
 	@GetMapping("/{id}")
-	public ResponseEntity<T> findById(Long id) {
+	public ResponseEntity<T> findById(@PathVariable Long id) {
 		checkService();
 		return ResponseEntity.ok(baseService.findById(id));
 	}
