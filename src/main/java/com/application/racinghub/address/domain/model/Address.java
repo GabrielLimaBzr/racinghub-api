@@ -1,6 +1,7 @@
 package com.application.racinghub.address.domain.model;
 
 import com.application.racinghub.common.domain.model.BaseModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -42,5 +43,6 @@ public class Address extends BaseModel{
     private String note;
 
     @CreatedDate
+    @JsonIgnore
     private LocalDateTime created;
 }

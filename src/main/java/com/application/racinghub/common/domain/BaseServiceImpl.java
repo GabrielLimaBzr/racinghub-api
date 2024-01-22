@@ -18,6 +18,7 @@ public abstract class BaseServiceImpl<T extends BaseModel, FP extends BaseFilter
 		implements BaseService<T, FP, S> {
 
 	private final Class<T> entityClass;
+
 	private final JpaRepository<T, Long> repository;
 
 	protected BaseServiceImpl(Class<T> entityClass, JpaRepository<T, Long> repository) {

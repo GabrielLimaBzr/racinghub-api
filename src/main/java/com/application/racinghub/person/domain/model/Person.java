@@ -7,6 +7,7 @@ import com.application.racinghub.common.domain.model.BaseModel;
 import com.application.racinghub.person.domain.enums.Gender;
 import com.application.racinghub.person.domain.enums.PersonType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -30,7 +31,6 @@ public class Person extends BaseModel {
 	private String name;
 
 	@NotNull(message = "Data de nascimento inválida")
-    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime birthDate;
     
 	@NotNull(message = "Tipo de pessoa inválido")
@@ -52,5 +52,6 @@ public class Person extends BaseModel {
     private Address address;
 
     @CreatedDate
+    @JsonIgnore
 	private LocalDateTime created;
 }

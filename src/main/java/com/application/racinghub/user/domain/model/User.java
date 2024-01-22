@@ -7,6 +7,8 @@ import com.application.racinghub.common.domain.model.BaseModel;
 import com.application.racinghub.person.domain.model.Person;
 import com.application.racinghub.user.domain.enums.Role;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -38,12 +40,13 @@ public class User extends BaseModel {
     private Boolean active = false;
 
 	@CreatedDate
+	@JsonIgnore
     private LocalDateTime created;
     
     @Enumerated(EnumType.ORDINAL)
     private Role role;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@NotNull(message = "Pessoa inválida")
 	private Person person;
 }

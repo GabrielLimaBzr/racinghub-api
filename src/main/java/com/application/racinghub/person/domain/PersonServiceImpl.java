@@ -1,5 +1,7 @@
 package com.application.racinghub.person.domain;
 
+import com.application.racinghub.address.domain.AddressService;
+import org.hibernate.service.spi.InjectService;
 import org.springframework.stereotype.Service;
 
 import com.application.racinghub.common.BaseSpecification.SearchOperantion;
@@ -12,9 +14,11 @@ import com.application.racinghub.person.infra.PersonRepository;
 
 @Service
 public class PersonServiceImpl extends BaseServiceImpl<Person, PersonFilter, PersonSpecification> implements PersonService{
+	private final AddressService addressService;
 
-	protected PersonServiceImpl(PersonRepository repository) {
+	public PersonServiceImpl(PersonRepository repository, AddressService addressService) {
 		super(Person.class, repository);
+		this.addressService = addressService;
 	}
 
 	@Override
@@ -25,4 +29,9 @@ public class PersonServiceImpl extends BaseServiceImpl<Person, PersonFilter, Per
 		return specification;
 	}
 
+	@Override
+	public Person create(Person entity) {
+		addressService.create(entity.getAddress());
+		return super.create(entity);
+	}
 }
